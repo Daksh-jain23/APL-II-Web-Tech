@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIIT-Bhopal 24U021009</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .heading {
+            text-align: center;
+            margin: 1rem;
+        }   
+        h2, h4 {
+            margin: 0;
+        }
+
+        nav {
+            background-color: #00478e;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-bar {
+            list-style-type: none;
+            margin: 10px;
+            padding: 0;
+            display: flex;
+            justify-content:space-between;
+        }
+        
+        .main-bar-element {
+            width: 100%;
+            color: white;
+            text-align: center;
+            position: relative;
+            border: 3px solid #00478e; 
+            border-left-color: #003f7e;  
+            padding: 0.8rem 1.5rem 0.8rem 1.5rem;
+            cursor: pointer;
+        }
+
+        .sub-bar, .sub-bar2{
+            list-style-type: none;
+            background-color: #00478e;    
+            padding: 0;           
+            margin: 0;
+            display: none;
+            position: absolute;
+            
+            top: 100%;       
+            left: 0;
+            width: 100%;
+            border: 3px solid white;
+            border-radius: 12px;
+        }
+
+        
+        .main-bar-element:hover .sub-bar {
+            display: block;
+        }
+
+        .sub-bar-element:hover .sub-bar2 {
+            display: block;
+            left: 100%;
+            top: 0;
+        }
+        .sub-bar-element, .sub-bar2-element {
+            color: white;
+            text-align: left;
+            position:relative;
+            padding: 0.87rem 1rem 0.8rem 1rem;
+            cursor: pointer;
+        }
+
+        .main-bar-element:hover, .sub-bar-element:hover, .sub-bar2-element:hover {
+            background-color: #003b76;
+            border: 3px solid white;
+            border-radius: 1rem;
+        }
+        
+        .icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        footer {
+            text-align: center;
+            font-style: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(0, 36, 126);
+            margin:0;
+            font-size: 1.2rem;
+            padding: 1rem;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h2>भारतीय सूचना प्रौद्योगिकी संस्थान, भोपाल</h2>
+        <h2>Indian Institute Of Information Technology, Bhopal</h2>
+        <h4>(An Autonomous Institute of National Importance under act of Parliament)</h4>
+    </div>
+
+    <nav>
+        <ul class="main-bar">
+
+            <li class = "main-bar-element">
+                Home
+            </li>
+
+            <li class = "main-bar-element">
+                <span>Institute</span>
+                <span class = "icon">▼</span>
+                <ul class="sub-bar">
+                    <li class="sub-bar-element">About IIIT-Bhopal</li>
+                    <li class="sub-bar-element">Vision & Mission</li>
+                    <li class="sub-bar-element">Director's Desk</li>
+                    <li class="sub-bar-element">Institute Statutes</li>
+                    <li class="sub-bar-element">Board of Governance</li>
+                </ul>
+            </li>
+
+            <li class = "main-bar-element">
+                <span>Academics</span>
+                <span class = "icon">▼</span>
+                <ul class="sub-bar">
+                    <li class="sub-bar-element">Programme</li>
+                    <li class="sub-bar-element">Academic Calendar</li>
+                    <li class="sub-bar-element">Download Forms</li>
+                </ul>
+            </li>
+
+            <li class = "main-bar-element">
+                <span>People</span>
+                <span class = "icon">▼</span>
+                <ul class="sub-bar">
+                    <li class="sub-bar-element">
+                        Faculty   
+                        <span class = "icon">▶</span>
+                        <ul class="sub-bar2">
+                            <li class="sub-bar2-element">Regular</li>
+                            <li class="sub-bar2-element">Contract</li>
+                            <li class="sub-bar2-element">Adjunct</li>
+                            <li class="sub-bar2-element">Visiting</li>
+                        </ul>
+                    </li>
+                    <li class="sub-bar-element">Board of Studies</li>
+                    <li class="sub-bar-element">Administration</li>
+                    <li class="sub-bar-element">Non-Faculty Staff</li>
+                    <li class="sub-bar-element">Alumini</li>
+                    <li class="sub-bar-element">Student Council</li>
+                </ul>
+            </li>
+
+            <li class = "main-bar-element">                
+                <span>Admissions</span>
+                <span class = "icon">▼</span>
+                <ul class="sub-bar">
+                    <li class="sub-bar-element">Admissions</li>
+                    <li class="sub-bar-element">Fee Structure</li>
+                    <li class="sub-bar-element">Online Institute Fee Payment</li>
+                    <li class="sub-bar-element">Scholarships</li>
+                    <li class="sub-bar-element">Admission Forms</li>
+                </ul>
+            </li>
+
+            <li class = "main-bar-element">
+                <span>Departments</span>
+                <span class = "icon">▼</span>
+                <ul class="sub-bar">
+                    <li class="sub-bar-element">Electronics & Communication Engineering</li>
+                    <li class="sub-bar-element">Computer Science & Engineering</li>
+                    <li class="sub-bar-element">Information Technology</li>
+                    <li class="sub-bar-element">Mathematics</li>
+                    <li class="sub-bar-element">Physics</li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <footer>
+        Name - Daksh Jain
+        <br>
+        Branch - CSE (Artificial Intelligence)
+        <br>
+        Scholar Number - 24U021009
+    </footer>
+</body>
+</html>
