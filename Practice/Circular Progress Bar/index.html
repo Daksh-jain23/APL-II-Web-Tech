@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            height: 200px;
+            width: 200px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .progress {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: 
+            conic-gradient(#4d5bf9 0% var(--val),
+            #c7d5f3 var(--val) 100%);
+            box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mask{
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background-color: rgb(255, 255, 255);
+            box-shadow: inset 1px 1px 4px 2px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px ;
+        }
+        #round-edge-1, #round-edge-2 {
+            width: 20px;
+            height: 20px;
+            background-color: #4d5bf9;
+            border-radius: 50%;
+            position: absolute;
+        }
+        #round-edge-1 {
+            transform: rotate(270deg) translate(65px);
+        }
+        #round-edge-2 {
+            transform: rotate(var(--val2)) translate(65px);
+        }
+
+        .myCircleProgress .progress:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+        .myCircleProgress2 .progress {
+            background: 
+            conic-gradient(#ff5733 0% var(--val),
+            #f0b7a4 var(--val) 100%);
+        }
+        .myCircleProgress2 #round-edge-1, .myCircleProgress2 #round-edge-2 {
+            background-color: #ff5733;
+        }
+
+        .myCircleProgress3 .progress {
+            background: 
+            conic-gradient(#ff00d0 0% var(--val),
+            #f0a4d8 var(--val) 100%);
+        }
+        .myCircleProgress3 #round-edge-1, .myCircleProgress3 #round-edge-2 {
+            background-color: #ff00d0;
+        }
+    </style>
+    <script>
+        class CircularProgress {
+            constructor(root){
+                this.root = root;
+                this.maskEl = root.querySelector('.mask');
+                this.progress = root.querySelector('.progress');
+                this.roundEdge2 = root.querySelector('#round-edge-2');
+
+                const value = parseInt(this.maskEl.textContent,10);
+                this.updateProgress(value);
+            }
+
+            updateProgress(value){
+                const v = Math.min(Math.max(parseInt(value,10)||0,0),100);
+                this.maskEl.textContent = v + '%';
+                this.progress.style.setProperty('--val', value + '%');
+                this.roundEdge2.style.setProperty('--val2', (3.6 * value - 90) + 'deg');
+            }
+        }
+
+        customElements.define('circle-progress', class extends HTMLElement {
+            connectedCallback(){
+                const v = this.getAttribute('value') || 0;
+
+                this.innerHTML = `
+                <div class="container">
+                    <div class="progress">
+                    <div id="round-edge-1"></div>
+                    <div id="round-edge-2"></div>
+                    <div class="mask">${v}%</div>
+                    </div>
+                </div>`;
+
+                this.instance = new CircularProgress(this);
+            }
+
+            set value(v){
+                this.instance?.updateProgress(v);
+            }
+        });
+
+        function GetValue(inputId, circleClass){
+            const inputEl = document.getElementById(inputId);
+            const circleEl = document.querySelector(`.${circleClass}`);
+            const value = inputEl.value;
+            circleEl.value = value;
+        }
+
+        document.addEventListener('DOMContentLoaded', ()=>{
+            GetValue('progressInput', 'myCircleProgress');
+            GetValue('progressInput2', 'myCircleProgress2');
+            GetValue('progressInput3', 'myCircleProgress3');
+        });
+    </script>
+
+
+</head>
+<body>
+    <form action="">
+        <label for="progressInput">Enter Progress Percentage (0-100): </label>
+        <input type="number" id="progressInput" name="progressInput" min="0" max="100" value="80" oninput="GetValue('progressInput', 'myCircleProgress')"/>
+        <input type="number" id="progressInput2" name="progressInput2" min="0" max="100" value="50" oninput="GetValue('progressInput2', 'myCircleProgress2')"/>
+        <input type="number" id="progressInput3" name="progressInput3" min="0" max="100" value="20" oninput="GetValue('progressInput3', 'myCircleProgress3')"/>   
+    </form>
+    <circle-progress value="10" class="myCircleProgress"></circle-progress>
+    <circle-progress value="10" class="myCircleProgress2"></circle-progress>
+    <circle-progress value="10" class="myCircleProgress3"></circle-progress>
+
+</body>
+</html>
