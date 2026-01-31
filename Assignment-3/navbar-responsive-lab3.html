@@ -5,334 +5,328 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IIIT-Bhopal 24U021009</title>
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00478e',
+                        'primary-dark': '#003f7e',
+                        'primary-hover': '#003b76',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .heading {
-            text-align: center;
-            margin-bottom: 2px;
-        }
-
-        h2 {
-            margin: 0;
-            color: #00478e;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        h4 {
-            margin: 5px 0 0;
-            font-weight: 400;
-            font-size: 0.9rem;
-        }
-
-        nav {
-            background-color: #00478e;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-toggle {
+        .dropdown-content {
             display: none;
-            padding: 1rem 1.5rem;
-            color: white;
-            cursor: pointer;
-            font-size: 1.5rem;
-            text-align: right;
         }
 
-        .menu-toggle:hover {
-            background-color: #003366;
-        }
-
-        .main-bar {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .main-bar-element {
-            flex: 0 1 auto;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .main-bar-element>span {
-            display: block;
-            padding: 1rem 1.5rem;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .main-bar-element:hover>span {
-            background-color: #0056b3;
-        }
-
-        .icon {
-            font-size: 0.8em;
-            margin-left: 5px;
-            display: inline-block;
-        }
-
-        .sub-bar,
-        .sub-bar2 {
-            list-style-type: none;
-            background-color: #fff;
-            padding: 0;
-            margin: 0;
-            display: block;
-            position: absolute;
-            z-index: 1001;
-            top: 100%;
-            left: 0;
-            min-width: 220px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            border-radius: 0 0 8px 8px;
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        .sub-bar2 {
-            left: 100%;
-            top: 0;
-            border-radius: 0 8px 8px 8px;
-        }
-
-        .sub-bar-element,
-        .sub-bar2-element {
-            position: relative;
-        }
-       
-        .sub-bar-element>a,
-        .sub-bar2-element>a,
-        .sub-bar-element>span,
-        .sub-bar2-element>span {
-            display: block;
-            padding: 0.8rem 1.2rem;
-            color: #333;
-            text-decoration: none;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #eee;
-        }
-
-        .sub-bar-element:last-child>a {
-            border-bottom: none;
-        }
-
-        .sub-bar-element:hover>a,
-        .sub-bar-element:hover>span,
-        .sub-bar2-element:hover>a,
-        .sub-bar2-element:hover>span {
-            background-color: #f0f4f8;
-            color: #00478e;
-        }
-
-        @media (min-width: 820px) {
-            .main-bar-element:hover>.sub-bar {
-                visibility: visible;
-                opacity: 1;
-            }
-
-            .sub-bar-element:hover>.sub-bar2 {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-
-        footer {
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            margin-top: 3rem;
-            font-size: 1rem;
-            padding: 2rem;
-            background-color: #003366;
-        }
-
-        @media (max-width: 800px) {
-            .menu-toggle {
+        @media (min-width: 768px) {
+            .group:hover .dropdown-content {
                 display: block;
-                cursor: pointer;
-                padding: 1rem 1.5rem;
-            }
-
-            .menu-toggle .bar {
-                display: block;
-                width: 25px;
-                height: 3px;
-                margin: 5px auto 5px 0;
-                background-color: white;
-                margin-left: auto;
-            }
-
-            .main-bar {
-                display: none;
-                flex-direction: column;
-                background-color: #00478e;
-                width: 100%;
-            }
-
-            .main-bar.active {
-                display: flex;;
-            }
-
-            .main-bar-element {
-                width: 100%;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .main-bar-element>span {
-                padding: 1rem 1.5rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .sub-bar,
-            .sub-bar2 {
-                position: static;
-                visibility: visible;
-                opacity: 1;
-                transform: none;
-                width: 100%;
-                box-shadow: none;
-                background-color: #003b76;
-                display: none;
-                border-radius: 0;
-            }
-
-            .sub-bar.open,
-            .sub-bar2.open {
-                display: block;
-            }
-
-            .sub-bar-element>a,
-            .sub-bar-element>span,
-            .sub-bar2-element>a,
-            .sub-bar2-element>span {
-                color: rgba(255, 255, 255, 0.8);
-                padding-left: 2.5rem;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
-
-            .sub-bar2-element>a {
-                padding-left: 3.5rem;
-            }
-
-            .sub-bar-element:hover>a,
-            .sub-bar-element:hover>span,
-            .sub-bar2-element:hover,
-            .sub-bar2-element:hover>a {
-                background-color: rgba(255, 255, 255, 0.1);
-                color: white;
-            }
-            .sub-bar-element{
-                background-color: #013873;
-            }
-            .sub-bar2-element {
-                background-color: #002042;
-                
             }
         }
     </style>
 </head>
 
-<body>
-    <div class="heading">
-        <h2>भारतीय सूचना प्रौद्योगिकी संस्थान, भोपाल</h2>
-        <h2>Indian Institute Of Information Technology, Bhopal</h2>
-        <h4>(An Autonomous Institute of National Importance under act of Parliament)</h4>
+<body class="bg-gray-50">
+
+    <div class="text-center m-4">
+        <h2 class="text-2xl font-bold">भारतीय सूचना प्रौद्योगिकी संस्थान, भोपाल</h2>
+        <h2 class="text-xl font-bold">Indian Institute Of Information Technology, Bhopal</h2>
+        <h4 class="text-sm text-gray-600 font-semibold">(An Autonomous Institute of National Importance under act of
+            Parliament)</h4>
     </div>
 
-    <nav>
-        <div class="menu-toggle" onclick="toggleMainMenu()">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        <ul class="main-bar">
+    <nav class="bg-primary font-sans relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
 
-            <li class="main-bar-element">
-                <span>Home</span>
-            </li>
+                <div class="flex items-center md:hidden w-full justify-end py-2">
+                    <button id="mobile-menu-btn" class="text-white hover:text-gray-200 focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
 
-            <li class="main-bar-element" onclick="toggleSubMenu(this, event)">
-                <span>Institute <span class="icon">▼</span></span>
-                <ul class="sub-bar">
-                    <li class="sub-bar-element"><span>About IIIT-Bhopal</span></li>
-                    <li class="sub-bar-element"><span>Vision & Mission</span></li>
-                    <li class="sub-bar-element"><span>Director's Desk</span></li>
-                    <li class="sub-bar-element"><span>Institute Statutes</span></li>
-                    <li class="sub-bar-element"><span>Board of Governance</span></li>
-                </ul>
-            </li>
+                <ul id="desktop-menu"
+                    class="hidden md:flex flex-col md:flex-row w-full justify-between list-none p-0 m-0">
 
-            <li class="main-bar-element" onclick="toggleSubMenu(this, event)">
-                <span>Academics <span class="icon">▼</span></span>
-                <ul class="sub-bar">
-                    <li class="sub-bar-element"><span>Programme</span></li>
-                    <li class="sub-bar-element"><span>Academic Calendar</span></li>
-                    <li class="sub-bar-element"><span>Download Forms</span></li>
-                </ul>
-            </li>
+                    <li
+                        class="main-bar-element relative group w-full text-center text-white border-2 border-primary border-l-primary-dark cursor-pointer hover:bg-primary-hover hover:border-white hover:rounded-xl transition-all duration-200 p-3">
+                        <a href="#" class="block w-full h-full">Home</a>
+                    </li>
 
-            <li class="main-bar-element" onclick="toggleSubMenu(this, event)">
-                <span>People <span class="icon">▼</span></span>
-                <ul class="sub-bar">
-                    <li class="sub-bar-element" onclick="toggleSubMenu(this, event)">
-                        <span>Faculty <span class="icon">▼</span></span>
-                        <ul class="sub-bar2">
-                            <li class="sub-bar2-element"><span>Regular</span></li>
-                            <li class="sub-bar2-element"><span>Contract</span></li>
-                            <li class="sub-bar2-element"><span>Adjunct</span></li>
-                            <li class="sub-bar2-element"><span>Visiting</span></li>
+
+                    <li
+                        class="main-bar-element relative group w-full text-center text-white border-2 border-primary border-l-primary-dark cursor-pointer hover:bg-primary-hover hover:border-white hover:rounded-xl transition-all duration-200 p-3">
+                        <div class="flex justify-center items-center gap-1">
+                            <span>Institute</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+
+                        <ul
+                            class="dropdown-content absolute left-0 top-full w-full bg-primary border-2 border-white rounded-xl z-10 p-0 hidden group-hover:block list-none">
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                About IIIT-Bhopal</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Vision & Mission</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Director's Desk</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Institute Statutes</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Board of Governance</li>
                         </ul>
                     </li>
-                    <li class="sub-bar-element"><span>Board of Studies</span></li>
-                    <li class="sub-bar-element"><span>Administration</span></li>
-                    <li class="sub-bar-element"><span>Non-Faculty Staff</span></li>
-                    <li class="sub-bar-element"><span>Alumini</span></li>
-                    <li class="sub-bar-element"><span>Student Council</span></li>
-                </ul>
-            </li>
 
-            <li class="main-bar-element" onclick="toggleSubMenu(this, event)">
-                <span>Admissions <span class="icon">▼</span></span>
-                <ul class="sub-bar">
-                    <li class="sub-bar-element"><span>Admissions</span></li>
-                    <li class="sub-bar-element"><span>Fee Structure</span></li>
-                    <li class="sub-bar-element"><span>Online Institute Fee Payment</span></li>
-                    <li class="sub-bar-element"><span>Scholarships</span></li>
-                    <li class="sub-bar-element"><span>Admission Forms</span></li>
-                </ul>
-            </li>
+                    <li
+                        class="main-bar-element relative group w-full text-center text-white border-2 border-primary border-l-primary-dark cursor-pointer hover:bg-primary-hover hover:border-white hover:rounded-xl transition-all duration-200 p-3">
+                        <div class="flex justify-center items-center gap-1">
+                            <span>Academics</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <ul
+                            class="dropdown-content absolute left-0 top-full w-full bg-primary border-2 border-white rounded-xl z-10 p-0 hidden group-hover:block list-none">
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Programme</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Academic Calendar</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Download Forms</li>
+                        </ul>
+                    </li>
 
-            <li class="main-bar-element" onclick="toggleSubMenu(this, event)">
-                <span>Departments <span class="icon">▼</span></span>
-                <ul class="sub-bar">
-                    <li class="sub-bar-element"><span>Electronics & Communication Engineering</span></li>
-                    <li class="sub-bar-element"><span>Computer Science & Engineering</span></li>
-                    <li class="sub-bar-element"><span>Information Technology</span></li>
-                    <li class="sub-bar-element"><span>Mathematics</span></li>
-                    <li class="sub-bar-element"><span>Physics</span></li>
-                </ul>
-            </li>
 
-        </ul>
+                    <li
+                        class="main-bar-element relative group w-full text-center text-white border-2 border-primary border-l-primary-dark cursor-pointer hover:bg-primary-hover hover:border-white hover:rounded-xl transition-all duration-200 p-3">
+                        <div class="flex justify-center items-center gap-1">
+                            <span>People</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <ul
+                            class="dropdown-content absolute left-0 top-full w-full bg-primary border-2 border-white rounded-xl z-10 p-0 hidden group-hover:block list-none">
+                            <li
+                                class="relative group/sub text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                <div class="flex justify-between items-center">
+                                    <span>Faculty</span>
+                                    <span class="text-xs">▶</span>
+                                </div>
+
+                                <ul
+                                    class="hidden group-hover/sub:block absolute left-full top-0 w-full bg-primary border-2 border-white rounded-xl z-20 p-0 list-none">
+                                    <li
+                                        class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                        Regular</li>
+                                    <li
+                                        class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                        Contract</li>
+                                    <li
+                                        class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                        Adjunct</li>
+                                    <li
+                                        class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                        Visiting</li>
+                                </ul>
+                            </li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Board of Studies</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Administration</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Non-Faculty Staff</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Alumini</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Student Council</li>
+                        </ul>
+                    </li>
+
+                    <li
+                        class="main-bar-element relative group w-full text-center text-white border-2 border-primary border-l-primary-dark cursor-pointer hover:bg-primary-hover hover:border-white hover:rounded-xl transition-all duration-200 p-3">
+                        <div class="flex justify-center items-center gap-1">
+                            <span>Admissions</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <ul
+                            class="dropdown-content absolute left-0 top-full w-full bg-primary border-2 border-white rounded-xl z-10 p-0 hidden group-hover:block list-none">
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Admissions</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Fee Structure</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Online Institute Fee Payment</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Scholarships</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Admission Forms</li>
+                        </ul>
+                    </li>
+
+                    <li
+                        class="main-bar-element relative group w-full text-center text-white border-2 border-primary border-l-primary-dark cursor-pointer hover:bg-primary-hover hover:border-white hover:rounded-xl transition-all duration-200 p-3">
+                        <div class="flex justify-center items-center gap-1">
+                            <span>Departments</span>
+                            <span class="text-xs">▼</span>
+                        </div>
+                        <ul
+                            class="dropdown-content absolute left-0 top-full w-full bg-primary border-2 border-white rounded-xl z-10 p-0 hidden group-hover:block list-none">
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Electronics & Communication Engineering</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Computer Science & Engineering</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Information Technology</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Mathematics</li>
+                            <li
+                                class="text-left text-white p-3 hover:bg-primary-hover hover:border-white hover:border-2 hover:rounded-lg">
+                                Physics</li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div id="mobile-menu"
+                    class="hidden md:hidden w-full absolute top-full left-0 bg-primary z-50 border-t border-white">
+
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <footer>
+    <div id="mobile-nav-content" class="md:hidden hidden bg-primary text-white pb-4">
+        <div class="flex flex-col p-2 space-y-1">
+            <a href="#"
+                class="block px-3 py-2 rounded-md hover:bg-primary-hover border border-transparent hover:border-white">Home</a>
+
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left px-3 py-2 rounded-md hover:bg-primary-hover border border-transparent hover:border-white flex justify-between items-center"
+                    onclick="toggleMobileSubmenu('mob-institute')">
+                    Institute <span>▼</span>
+                </button>
+                <div id="mob-institute" class="hidden pl-4 space-y-1 bg-primary-dark rounded-md mt-1">
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">About IIIT-Bhopal</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Vision & Mission</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Director's Desk</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Institute Statutes</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Board of Governance</a>
+                </div>
+            </div>
+
+
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left px-3 py-2 rounded-md hover:bg-primary-hover border border-transparent hover:border-white flex justify-between items-center"
+                    onclick="toggleMobileSubmenu('mob-academics')">
+                    Academics <span>▼</span>
+                </button>
+                <div id="mob-academics" class="hidden pl-4 space-y-1 bg-primary-dark rounded-md mt-1">
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Programme</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Academic Calendar</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Download Forms</a>
+                </div>
+            </div>
+
+
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left px-3 py-2 rounded-md hover:bg-primary-hover border border-transparent hover:border-white flex justify-between items-center"
+                    onclick="toggleMobileSubmenu('mob-people')">
+                    People <span>▼</span>
+                </button>
+                <div id="mob-people" class="hidden pl-4 space-y-1 bg-primary-dark rounded-md mt-1">
+
+                    <div class="mobile-sub-dropdown">
+                        <button
+                            class="w-full text-left px-3 py-2 rounded-md hover:bg-primary-hover flex justify-between items-center"
+                            onclick="toggleMobileSubmenu('mob-faculty')">
+                            Faculty <span>▶</span>
+                        </button>
+                        <div id="mob-faculty"
+                            class="hidden pl-4 space-y-1 bg-primary rounded-md mt-1 border border-white">
+                            <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Regular</a>
+                            <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Contract</a>
+                            <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Adjunct</a>
+                            <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Visiting</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Board of Studies</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Administration</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Non-Faculty Staff</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Alumini</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Student Council</a>
+                </div>
+            </div>
+
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left px-3 py-2 rounded-md hover:bg-primary-hover border border-transparent hover:border-white flex justify-between items-center"
+                    onclick="toggleMobileSubmenu('mob-admissions')">
+                    Admissions <span>▼</span>
+                </button>
+                <div id="mob-admissions" class="hidden pl-4 space-y-1 bg-primary-dark rounded-md mt-1">
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Admissions</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Fee Structure</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Online Institute Fee
+                        Payment</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Scholarships</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Admission Forms</a>
+                </div>
+            </div>
+
+
+            <div class="mobile-dropdown">
+                <button
+                    class="w-full text-left px-3 py-2 rounded-md hover:bg-primary-hover border border-transparent hover:border-white flex justify-between items-center"
+                    onclick="toggleMobileSubmenu('mob-departments')">
+                    Departments <span>▼</span>
+                </button>
+                <div id="mob-departments" class="hidden pl-4 space-y-1 bg-primary-dark rounded-md mt-1">
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Electronics & Communication
+                        Engineering</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Computer Science &
+                        Engineering</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Information Technology</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Mathematics</a>
+                    <a href="#" class="block px-3 py-2 hover:bg-primary-hover rounded-md">Physics</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <footer class="text-center font-bold text-lg text-[#00247e] bg-white p-4 font-sans mt-8">
         Name - Daksh Jain
         <br>
         Branch - CSE (Artificial Intelligence)
@@ -341,30 +335,21 @@
     </footer>
 
     <script>
-        function toggleMainMenu() {
-            const mainBar = document.querySelector('.main-bar');
-            mainBar.classList.toggle('active');
-        }
 
-        function toggleSubMenu(element, event) {
-            if (window.innerWidth <= 800) {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-nav-content');
 
-                event.stopPropagation();
-                const subMenu = element.querySelector('ul.sub-bar, ul.sub-bar2');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-                if (subMenu) {
-                    subMenu.classList.toggle('open');
 
-                    element.classList.toggle('open');
-                    const siblings = getSiblings(element);
-                    siblings.forEach(sibling => {
-                        const siblingSubMenu = sibling.querySelector('ul.sub-bar, ul.sub-bar2');
-                        if (siblingSubMenu) {
-                            siblingSubMenu.classList.remove('open');
-                            sibling.classList.remove('open');
-                        }
-                    });
-                }
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id);
+            if (submenu.classList.contains('hidden')) {
+                submenu.classList.remove('hidden');
+            } else {
+                submenu.classList.add('hidden');
             }
         }
     </script>
